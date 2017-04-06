@@ -14,6 +14,7 @@ adibide batean oinarrituta.
 #include "periferikoak.h"
 #include "zerbitzuErrutinak.h"
 #include "fondoak.h"
+#include "spriteak.h"
 
 
 void jokoa01(){	
@@ -31,20 +32,22 @@ void jokoa01(){
 	iniziatu();
 	int tekla=-1;
 	
-	iprintf("\x1b[22;5HHau idazte proba bat da");	//Honek, 22 lerroan eta 5 zutabean hasiko da idazten.												
-	iprintf("\x1b[10;5HSakatu START aurrera jarraitzeko");	
+	iprintf("\x1b[10;5HSakatu START aurrera jarraitzeko");	//Honek, 10 lerroan eta 5 zutabean hasiko da idazten.					
 
-	while(tekla != 2){	
+	while(EGOERA != 4){	
 		if(TeklaDetektatu()){
 			tekla =  SakatutakoTekla(); 
 			if(tekla == 2){
 				EGOERA = 4;
 			}
-			if(EGOREA = 0){
-				iprintf("\x1b[23;5HAldagai proba. Balioa=%d", tekla);
-				if(tekla==3){
-					EGOERA = 1;
-					ErlojuaMartxanJarri();	
+			else{
+				if(EGOERA == 0){
+					iprintf("\x1b[23;5HAldagai proba. Balioa=%d", tekla);
+					if(tekla==3){
+						EGOERA = 1;
+						ErlojuaMartxanJarri();	
+						ErakutsiKarratua(1,5,150);
+					}
 				}
 			}
 		}	

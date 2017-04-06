@@ -28,11 +28,3 @@ void erakutsiAtea() {
                      (uint16 *)BG_BMP_RAM(0), /* Fondo nagusiaren helbidea */
                      AteaBitmapLen); /* Luzera (bytetan) automatikoki sortzen den aldagaia */
 }
-
-void erakutsiAteaIrekita() {
-		
-    dmaCopyHalfWords(DMA_CHANNEL,
-                     AteaIrekitaBitmap, /* Automatikoki sortzen den aldagaia */
-                     (uint16 *)BG_BMP_RAM(0), /* Fondo nagusiaren helbidea */
-                     AteaIrekitaBitmapLen); /* Luzera (bytetan) automatikoki sortzen den aldagaia */
-}
