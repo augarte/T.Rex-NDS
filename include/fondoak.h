@@ -2,4 +2,6 @@
 fondoak.h
 -------------------------------------*/
 
-extern void erakutsiFondoa();
+extern void erakutsiHasieraFondoa();
+extern void erakutsiPartidaFondoa();
+extern void erakutsiBukaeraFondoa();

@@ -28,11 +28,11 @@ void jokoa01(){
 	//***************************************************************************************//
 
 	EGOERA=0;
-	erakutsiFondoa();
+	erakutsiHasieraFondoa();
 	iniziatu();
 	int tekla=-1;
 	
-	iprintf("\x1b[10;5HSakatu START aurrera jarraitzeko");	//Honek, 10 lerroan eta 5 zutabean hasiko da idazten.					
+	iprintf("\x1b[10;5HSakatu START jokatzeko");	//Honek, 10 lerroan eta 5 zutabean hasiko da idazten.					
 
 	while(EGOERA != 4){	
 		if(TeklaDetektatu()){
@@ -42,11 +42,13 @@ void jokoa01(){
 			}
 			else{
 				if(EGOERA == 0){
-					iprintf("\x1b[23;5HAldagai proba. Balioa=%d", tekla);
 					if(tekla==3){
+						iprintf("\x1b[10;0H                                ");
 						EGOERA = 1;
+						erakutsiPartidaFondoa();
 						ErlojuaMartxanJarri();	
 						ErakutsiTrex(1,12,120);
+						ErakutsiCactus(2,100,50);
 					}
 				}
 			}

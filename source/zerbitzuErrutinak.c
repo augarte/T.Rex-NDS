@@ -15,31 +15,26 @@ void tekEten (){
 	if(EGOERA==1){
 		if (SakatutakoTekla()==A){
 			EGOERA=2;
-			ErakutsiTrex(1,12,150);
+			ErakutsiTrex(1,12,80);
 		}
 	}
 }
 
 void tenpEten(){
 	static int salto=0;
-	static int tik=0;
-	static int seg=0;
+	static int points=0;
 
 	if(EGOERA==1 || EGOERA==2){
 		if(EGOERA==2){
 			salto++;
-			if(salto==10){
+			if(salto==8){
 				EGOERA=1;
 				salto=0;
 				ErakutsiTrex(1,12,120);
 			}
 		}
-		tik++;
-		if (tik==5){
-			seg ++;
-			iprintf("\x1b[13;5HPasa diren segunduak=%d", seg);
-			tik=0;
-		}
+		points ++;
+		iprintf("\x1b[13;5HPuntuazioa=%d", points);
 	}
 }
 

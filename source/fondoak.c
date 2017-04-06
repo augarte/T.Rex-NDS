@@ -13,17 +13,32 @@ automatikoki sortzen dira, konpilatzerako garaian, baina horretarako gogoratu be
 
 #include "fondoak.h"
 #include "grafikoak.h"
-#include "Fondoa.h"
+#include "PartidaFondoa.h"
+#include "HasieraFondoa.h"
+#include "BukaeraFondoa.h"
 
 /* irudiak memorian kopiatzeko DMA kanala aukeratu (3.a) */
 static const int DMA_CHANNEL = 3;
 
 /* Pantailaratu nahi den grafiko bakoitzerako horrelako prozedura bat idatzi behar da */
 
-void erakutsiFondoa() {
-	
+void erakutsiPartidaFondoa() {
 	dmaCopyHalfWords(DMA_CHANNEL,
-                     FondoaBitmap, /* Automatikoki sortzen den aldagaia */
+                     PartidaFondoaBitmap, /* Automatikoki sortzen den aldagaia */
                      (uint16 *)BG_BMP_RAM(0), /* Fondo nagusiaren helbidea */
-                     FondoaBitmapLen); /* Luzera (bytetan) automatikoki sortzen den aldagaia */
+                     PartidaFondoaBitmapLen); /* Luzera (bytetan) automatikoki sortzen den aldagaia */
+}
+
+void erakutsiHasieraFondoa() {
+	dmaCopyHalfWords(DMA_CHANNEL,
+                     HasieraFondoaBitmap, /* Automatikoki sortzen den aldagaia */
+                     (uint16 *)BG_BMP_RAM(0), /* Fondo nagusiaren helbidea */
+                     HasieraFondoaBitmapLen); /* Luzera (bytetan) automatikoki sortzen den aldagaia */
+}
+
+void erakutsiBukaeraFondoa() {
+	dmaCopyHalfWords(DMA_CHANNEL,
+                     BukaeraFondoaBitmap, /* Automatikoki sortzen den aldagaia */
+                     (uint16 *)BG_BMP_RAM(0), /* Fondo nagusiaren helbidea */
+                     BukaeraFondoaBitmapLen); /* Luzera (bytetan) automatikoki sortzen den aldagaia */
 }
