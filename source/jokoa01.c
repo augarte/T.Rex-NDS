@@ -28,7 +28,7 @@ void jokoa01(){
 	//***************************************************************************************//
 
 	EGOERA=0;
-	erakutsiAtea();
+	erakutsiFondoa();
 	iniziatu();
 	int tekla=-1;
 	
@@ -46,7 +46,7 @@ void jokoa01(){
 					if(tekla==3){
 						EGOERA = 1;
 						ErlojuaMartxanJarri();	
-						ErakutsiKarratua(1,5,150);
+						ErakutsiTrex(1,12,120);
 					}
 				}
 			}
