@@ -12,12 +12,16 @@ adibide batean oinarrituta.
 
 u16* gfxtrex;
 u16* gfxcactus;
+u16* gfxtxoribehe;
+u16* gfxtxorigoi;
 
 /* Pantailan erakutsi nahi den sprite bakoitzeko memoria erreserbatu.*/
 void memoriaErreserbatu(){
 	/* Pantaila nagusian gehitu nahi den sprite bakoitzarentzako horrelako bat egin behar da. */
 	gfxtrex=oamAllocateGfx(&oamMain, SpriteSize_64x64, SpriteColorFormat_256Color);
 	gfxcactus=oamAllocateGfx(&oamMain, SpriteSize_32x64, SpriteColorFormat_256Color);
+	gfxtxoribehe=oamAllocateGfx(&oamMain, SpriteSize_32x32, SpriteColorFormat_256Color);
+	gfxtxorigoi=oamAllocateGfx(&oamMain, SpriteSize_32x32, SpriteColorFormat_256Color);
 }
 
 /* Pixel bakoitzak har ditzakeen 256 balioetako bakoitzari kolore bat esleitu PANTAILA NAGUSIAN. 0 balioa gardena da 
@@ -145,6 +149,50 @@ u8 cactus[2048] = {
 	0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 };
 
+u8 txoriBehe[1024] = {
+	0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,1,1,1,1,0,0,0,0,1,1,1,1,0,0,0,1,1,1,1,1,0,0,1,1,1,1,1,1,
+	0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,
+	0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+	0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+
+	0,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+	1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,0,0,0,1,1,1,1,1,0,0,0,0,1,1,1,1,
+	0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+	0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,
+
+	0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+	0,0,0,0,1,1,1,1,0,0,0,0,1,1,1,1,0,0,0,0,1,1,1,1,0,0,0,0,1,1,1,1,0,0,0,0,1,1,1,1,0,0,0,0,1,1,1,0,0,0,0,0,1,1,1,0,0,0,0,0,1,1,1,0,
+	1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+	1,1,1,1,1,1,0,0,1,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+
+	0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+	0,0,0,0,1,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+	0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+	0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+};
+
+u8 txoriGoi[1024] = {
+	0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,1,1,1,1,0,0,0,0,1,1,1,1,0,0,0,1,1,1,1,1,0,0,1,1,1,1,1,1,
+	0,0,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,0,1,1,1,1,1,0,0,0,0,1,1,1,1,1,0,0,0,0,1,1,1,1,0,0,0,0,1,1,1,1,0,0,0,0,1,1,1,1,1,0,0,0,1,1,1,1,
+	0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,0,1,1,1,1,0,0,0,0,
+	0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+
+	0,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+	1,1,0,0,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,0,0,0,1,1,1,1,1,0,0,0,0,1,1,1,1,
+	1,1,1,1,1,0,0,0,1,1,1,1,1,0,0,0,1,1,1,1,1,0,0,0,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+	0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,
+
+	0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+	0,0,0,0,0,1,1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+	1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+	1,1,1,1,1,1,0,0,1,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+
+	0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+	0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+	0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+	0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+};
+
 /* Irudikatutako Spriteak memorian kargatzen ditu. SPRITE bat baino gehiago erakusteko
 for bana egin behar da.*/
 
@@ -155,6 +203,12 @@ void SpriteakMemorianGorde(){
 	}
 	for(i=0; i<32*64 / 2; i++){
 		gfxcactus[i] = cactus[i*2] | (cactus[(i*2)+1]<<8);
+	}
+	for(i=0; i<32*64 / 2; i++){
+		gfxtxoribehe[i] = txoriBehe[i*2] | (txoriBehe[(i*2)+1]<<8);
+	}
+	for(i=0; i<32*64 / 2; i++){
+		gfxtxorigoi[i] = txoriGoi[i*2] | (txoriGoi[(i*2)+1]<<8);
 	}
 }
 
@@ -225,6 +279,78 @@ void EzabatuCactus(int indizea, int x, int y){
 			SpriteSize_32x64,     
 			SpriteColorFormat_256Color, 
 			gfxcactus,//+16*16/2,                  //pointer to the loaded graphics
+			-1,                  //sprite rotation data  
+			false,               //double the size when rotating?
+			true,			//hide the sprite?
+			false, false, //vflip, hflip
+			false	//apply mosaic
+			); 
+	oamUpdate(&oamMain); 
+}
+
+void ErakutsiTxoriBehe(int indizea, int x, int y){
+	oamSet(&oamMain, //main graphics engine context
+		indizea,           //oam index (0 to 127)  
+		x, y,   //x and y pixle location of the sprite
+		0,                    //priority, lower renders last (on top)
+		0,					  //this is the palette index if multiple palettes or the alpha value if bmp sprite	
+		SpriteSize_32x32,     
+		SpriteColorFormat_256Color, 
+		gfxtxoribehe,//+16*16/2,                  //pointer to the loaded graphics
+		-1,                  //sprite rotation data  
+		false,               //double the size when rotating?
+		false,			//hide the sprite?
+		false, false, //vflip, hflip
+		false	//apply mosaic
+		);  
+	oamUpdate(&oamMain); 
+}
+
+void EzabatuTxoriBehe(int indizea, int x, int y){
+	oamSet(&oamMain, //main graphics engine context
+			indizea,           //oam index (0 to 127)  
+			x, y,   //x and y pixle location of the sprite
+			0,                    //priority, lower renders last (on top)
+			0,					  //this is the palette index if multiple palettes or the alpha value if bmp sprite	
+			SpriteSize_32x32,     
+			SpriteColorFormat_256Color, 
+			gfxtxoribehe,//+16*16/2,                  //pointer to the loaded graphics
+			-1,                  //sprite rotation data  
+			false,               //double the size when rotating?
+			true,			//hide the sprite?
+			false, false, //vflip, hflip
+			false	//apply mosaic
+			); 
+	oamUpdate(&oamMain); 
+}
+
+void ErakutsiTxoriGoi(int indizea, int x, int y){
+	oamSet(&oamMain, //main graphics engine context
+		indizea,           //oam index (0 to 127)  
+		x, y,   //x and y pixle location of the sprite
+		0,                    //priority, lower renders last (on top)
+		0,					  //this is the palette index if multiple palettes or the alpha value if bmp sprite	
+		SpriteSize_32x32,     
+		SpriteColorFormat_256Color, 
+		gfxtxorigoi,//+16*16/2,                  //pointer to the loaded graphics
+		-1,                  //sprite rotation data  
+		false,               //double the size when rotating?
+		false,			//hide the sprite?
+		false, false, //vflip, hflip
+		false	//apply mosaic
+		);  
+	oamUpdate(&oamMain); 
+}
+
+void EzabatuTxoriGoi(int indizea, int x, int y){
+	oamSet(&oamMain, //main graphics engine context
+			indizea,           //oam index (0 to 127)  
+			x, y,   //x and y pixle location of the sprite
+			0,                    //priority, lower renders last (on top)
+			0,					  //this is the palette index if multiple palettes or the alpha value if bmp sprite	
+			SpriteSize_32x32,     
+			SpriteColorFormat_256Color, 
+			gfxtxorigoi,//+16*16/2,                  //pointer to the loaded graphics
 			-1,                  //sprite rotation data  
 			false,               //double the size when rotating?
 			true,			//hide the sprite?

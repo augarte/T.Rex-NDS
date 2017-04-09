@@ -14,7 +14,7 @@ adibide batean oinarrituta.
 #include "periferikoak.h"
 #include "zerbitzuErrutinak.h"
 #include "fondoak.h"
-#include "spriteak.h"
+#include "funtzioLaguntzaileak.h"
 
 
 void jokoa01(){	
@@ -43,20 +43,27 @@ void jokoa01(){
 			else{
 				if(EGOERA == 0){
 					if(tekla==3){
-						iprintf("\x1b[10;0H                                ");
+						ezabatuLerroBat(10);
 						EGOERA = 1;
 						erakutsiPartidaFondoa();
 						ErlojuaMartxanJarri();	
 						ErakutsiTrex(1,12,120);
-						ErakutsiCactus(2,100,50);
 					}
 				}
 			}
+		}
+		if(EGOERA == 3){
+			touchRead(&PANT_DAT);
+			int px = PANT_DAT.px;
+			int py = PANT_DAT.py;
+			if(px > 30 && py >30){
+				EGOERA=0;
+				erakutsiHasieraFondoa();
+			}
 		}	
 	}
-	EGOERA = 4; 
 	ErlojuaGelditu();
-	iprintf("\x1b[16;5HPrograma bukatu da");
+	iprintf("\x1b[16;5HJokoa bukatu egin da.");
 }
 
 void iniziatu(){
