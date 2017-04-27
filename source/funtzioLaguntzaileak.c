@@ -17,8 +17,3 @@ void ezabatuSpriteak(){
 	EzabatuCactus(2,0,0);
 	EzabatuTrex(1,0,0);
 }
-
-void eguneratuPosizioak(){
-	txoriPos = 384;
-	cactusPos = 256;
-}

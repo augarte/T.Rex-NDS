@@ -56,20 +56,21 @@ void jokoa01(){
 			touchRead(&PANT_DAT);
 			int px = PANT_DAT.px;
 			int py = PANT_DAT.py;
-			if(px > 30 && py >30){
+			if((px > 94 && px < 162) && (py > 66 && py < 126)){
 				EGOERA=0;
 				erakutsiHasieraFondoa();
 			}
 		}	
 	}
 	ErlojuaGelditu();
+	ezabatuPantaila();
 	iprintf("\x1b[16;5HJokoa bukatu egin da.");
 }
 
 void iniziatu(){
 	IME = 1;
 	konfiguratuTeklatua(0x00004003);
-	konfiguratuTenporizadorea(39322, 0x00000042);
+	konfiguratuTenporizadorea(30583, 0x00000041);
 	TekEtenBaimendu();
 	DenbEtenBaimendu();
 	etenZerbErrutEzarri();
