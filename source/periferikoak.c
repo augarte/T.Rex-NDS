@@ -14,7 +14,6 @@ int TeklaDetektatu() {
 	//TRUE itzultzen du teklaren bat sakatu dela detektatzen badu
 	if ((~TEKLAK_DAT & 0x03ff)!=0) return 1;
 	else return 0;
-
 }
 
 int SakatutakoTekla() {

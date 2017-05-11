@@ -35,30 +35,30 @@ void jokoa01(){
 	iprintf("\x1b[10;5HSakatu START jokatzeko");	//Honek, 10 lerroan eta 5 zutabean hasiko da idazten.					
 
 	while(EGOERA != 4){	
-		if(TeklaDetektatu()){
-			tekla =  SakatutakoTekla(); 
-			if(tekla == 2){
-				EGOERA = 4;
-			}
-			else{
-				if(EGOERA == 0){
-					if(tekla==3){
-						ezabatuLerroBat(10);
-						EGOERA = 1;
-						erakutsiPartidaFondoa();
-						ErlojuaMartxanJarri();	
-						ErakutsiTrex(1,12,120);
-					}
+		if(EGOERA == 0){
+			if(TeklaDetektatu()){
+				tekla =  SakatutakoTekla(); 
+				if(tekla==3){
+					ezabatuLerroBat(10);
+					ezabatuLerroBat(13);
+					ezabatuLerroBat(16);
+					EGOERA = 1;
+					erakutsiPartidaFondoa();
+					ErlojuaMartxanJarri();	
+					ErakutsiTrex(1,12,120);
 				}
 			}
 		}
-		if(EGOERA == 3){
+		else if(EGOERA == 3){
 			touchRead(&PANT_DAT);
 			int px = PANT_DAT.px;
 			int py = PANT_DAT.py;
 			if((px > 94 && px < 162) && (py > 66 && py < 126)){
 				EGOERA=0;
 				erakutsiHasieraFondoa();
+				ezabatuLerroBat(13);
+				ezabatuLerroBat(16);
+				iprintf("\x1b[10;5HSakatu START jokatzeko");
 			}
 		}	
 	}
@@ -69,7 +69,7 @@ void jokoa01(){
 
 void iniziatu(){
 	IME = 1;
-	konfiguratuTeklatua(0x00004003);
+	konfiguratuTeklatua(0x00004005);
 	konfiguratuTenporizadorea(30583, 0x00000041);
 	TekEtenBaimendu();
 	DenbEtenBaimendu();

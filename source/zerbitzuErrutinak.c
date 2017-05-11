@@ -15,6 +15,9 @@ periferikoak.c
 int EGOERA;
 
 void tekEten (){
+	if (SakatutakoTekla()==2){
+		EGOERA=4;
+	}
 	if(EGOERA==1){
 		if (SakatutakoTekla()==A){
 			EGOERA=2;
