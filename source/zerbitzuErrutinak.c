@@ -25,11 +25,12 @@ void tekEten (){
 	}
 }
 
-void tenpEten(){
 	static int salto=0;
 	static int points=0;
 	static int txori=0;
+	static int trex=0;
 
+void tenpEten(){
 	if(EGOERA==1 || EGOERA==2){
 		if(EGOERA==2){
 			if(salto<12){
@@ -43,6 +44,17 @@ void tenpEten(){
 			if(salto==24){
 				EGOERA=1;
 				salto=0;
+			}
+		}
+		else if(EGOERA==1){
+			if(trex==40) trex=0;
+			if(trex>=0 && trex<20){
+				ErakutsiTrex1(1,12,120);
+				trex++;
+			}
+			else if(trex>=20){
+				ErakutsiTrex2(1,12,120);
+				trex--;
 			}
 		}
 

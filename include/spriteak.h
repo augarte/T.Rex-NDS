@@ -25,6 +25,12 @@ extern void SpriteakMemorianGorde();
 extern void ErakutsiTrex(int indizea, int x, int y);
 extern void EzabatuTrex(int indizea, int x, int y);
 
+extern void ErakutsiTrex1(int indizea, int x, int y);
+extern void EzabatuTrex1(int indizea, int x, int y);
+
+extern void ErakutsiTrex2(int indizea, int x, int y);
+extern void EzabatuTrex2(int indizea, int x, int y);
+
 extern void ErakutsiCactus(int indizea, int x, int y);
 extern void EzabatuCactus(int indizea, int x, int y);
 
